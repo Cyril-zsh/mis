@@ -1,0 +1,26 @@
+1、Jquery选择器有哪几种
+2、SpringMvc工作机制流程
+3、Mybatis自动生成主键（比如insert之后主键如何返回）
+4、Mybatis分页实现
+5、Ajax技术的好处是什么
+6、servlet的一些常用内置对象
+7、做项目时遇到过哪些异常
+8、Spring使用的注解有哪些
+9、Spring默认生成的实例对象是单例还是多例
+10、Spring用到了哪些设计模式
+11、依赖注入,AOP,Spring事务的实现原理
+12、乐观锁、悲观锁
+13、java.util.concurrent
+14、通信协议——Http、TCP、UDP
+
+
+
+分布式、多线程、缓存、消息队列、搜索等机制，大数据、高并发的业务场景及解决方案
+NoSQL数据库 (MongoDB, Redis)
+设计模式
+Linux
+前端框架、开发工具、编译工具（node.js、AngularJS、React、Less。。。）
+Tomcat，Apache等开源的服务器的配置和调优
+jvm原理和优化
+
+http://www.cnblogs.com/xrq730/p/5260294.html

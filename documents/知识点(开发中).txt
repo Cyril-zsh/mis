@@ -1,0 +1,291 @@
+//编程式事务回滚（不提倡使用）Spring
+Object create = TransactionAspectSupport.currentTransactionStatus().createSavepoint();
+TransactionAspectSupport.currentTransactionStatus().rollbackToSavepoint(create);
+TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+
+//js
+window.local.hash ajax历史记录
+
+//设置select readonly
+<select onbeforeactivate="return false" onfocus="this.blur()" onmouseover="this.setCapture()" onmouseout="this.releaseCapture()">
+	<option>1</option>
+</select>
+
+//第三个项目开始，则可找到该元素的同胞元素：
+$('li.third-item').siblings().css('background-color', 'red');
+
+java分页计算总页数：pageCount = (allCount-1)/pageSize+1;
+
+FreeMarker
+
+f_duplicate
+
+shiro权限控制
+
+Servlet 3特性:异步Servlet, web.xml 3.0
+
+代码自动生成
+
+docker、Kubernetes
+
+缓存技术：
+	简单就用ehcache，工程大复杂且支持多的就redis
+
+学习参考：
+	http://www.sanesee.com/
+	http://blog.csdn.net/xiamizy/article/details/39178679
+	http://blog.csdn.net/zxy861114/article/category/354115
+
+技术栈：
+	Java语言：
+		基础, 基本类型, 操作符, 运算符, 表达式
+		面向对象, 类, 继承, 多态, 重写, 重载
+		String, Object, Array, Enum
+		集合, List, ArrayList, Set, HashSet, Map, HashMap, HashTable
+		File, IO, NIO, InputStream, OutputStream, Reader, Writer, Selector
+		多线程, 并发, Thread, Runnable, Future
+		注解
+		反射
+		JDBC
+		IOC依赖注入, AOP 面向切面编程
+	jvm调优:Jprofile,MAT,jdk命令
+	web框架:Dubbo微服务,Spring,SpringBoot,SpringMvc
+	web服务器:tomcat,jboss
+	负载均衡:nginx
+	脚本:linux shell
+	前端:Js,JQuery,JQrid
+	缓存:mongo,redis
+	数据库:mysql
+	消息服务:阿里消息队列(队列,公告)
+	版本控制:git,gitflow,sourceTree(客户端)
+	质量管理:禅道,Jira
+	数据迁移:Kettle
+	构建工具:maven,jenkins
+	注册中心:zookeeper
+	lombok 
+	Java元组类型之javatuples
+	
+
+开源代码：
+	开源中国：
+		jeesuite-libs
+		hutool
+		Mybatis-Plus
+
+
+记录：
+分页计算总页数算法：
+	int totalPageNum = (totalRecord  +  pageSize  - 1) / pageSize;
+权限设计参考：
+	http://jinnianshilongnian.iteye.com/blog/2018398
+	http://blog.csdn.net/fenghuazhengmaos/article/details/50261979
+	http://minjiechenjava.iteye.com/blog/1759482
+
+通用的JDBC的try…catch…finally:
+	//--------- start ---------------------------------------------
+	Connection conn = null;
+	PreparedStatement stmt = null;
+	ResultSet rs=null;
+
+	try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+
+		// Get connection from DriverManager or from DataSource
+		conn = DriverManager.getConnection("connection string", "username", "pwd");
+
+		stmt = conn.prepareStatement("SELECT count( * ) FROM user_objects order by object_name");
+		rs = stmt.executeQuery();
+		if (rs.next()){ 
+			……
+			……
+		}
+		rs.close();
+
+	} catch (Exception e){
+		System.out.println("[Exception] - " + e.toString());
+	} finally {
+		try {
+			if (stmt != null)
+			stmt.close();
+
+			if (conn != null)
+			conn.close(); 
+		} catch (Exception fe){
+			System.out.println("[Exception] - " + fe.toString());
+		}
+	}
+	//--------- end ---------------------------------------------
+
+java代码拼装树结构
+	{//开始拼装树结构
+		List<Map> treeList = new ArrayList<Map>();
+		for(Map objC : dataList){
+			boolean flag = false;
+			String pointIdC = CommonUtil.getString(objC.get("POINT_ID"));
+			String pointNameC = CommonUtil.getString(objC.get("POINT_NAME"));
+			String parentIdC = CommonUtil.getString(objC.get("K_PARENT_ID"));
+			objC.put("kpSerialCode", pointIdC);
+			objC.put("kpSerialName", pointIdC);
+			
+			
+			if(StringUtil.isNotEmpty(parentIdC)){
+				for(Map objP : dataList){
+					String pointIdP = CommonUtil.getString(objP.get("POINT_ID"));
+					if(parentIdC.equals(pointIdP)){
+						flag = true;
+						List<Map> childList = (List<Map>) objP.get("data");
+						if(childList == null){
+							childList = new ArrayList<Map>();
+							objP.put("data", childList);
+						}
+						childList.add(objC);
+					}
+				}
+			}
+			
+			if(!flag){
+				treeList.add(objC);
+			}
+		}
+	}//结束拼装树结构
+
+tomcat 内存设置
+	 -Xms512M -Xmx2048M -XX:PermSize=512m -XX:MaxPermSize=2048m
+
+html获取url参数
+	var request = { 
+		QueryString : function(val) { 
+	　　    var LocString  = window.location.search.substr(1); 
+	    	var rs = new RegExp("(^|&)" + val + "=([^&]*)(&|$)", "gi").exec(LocString), tmp; 
+		    if (tmp = rs) { 
+		      return tmp[2]; 
+		    } 
+	    	return ""; 
+		} 
+	}; 
+
+------------------------------------------------ nginx 配置 start ------------------------------------------------------------------
+#运行用户
+user nobody;
+#启动进程,通常设置成和cpu的数量相等
+worker_processes  1;
+ 
+#全局错误日志及PID文件
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+ 
+#pid        logs/nginx.pid;
+ 
+#工作模式及连接数上限
+events {
+    #epoll是多路复用IO(I/O Multiplexing)中的一种方式,
+    #仅用于linux2.6以上内核,可以大大提高nginx的性能
+    use   epoll; 
+ 
+    #单个后台worker process进程的最大并发链接数    
+    worker_connections  1024;
+ 
+    # 并发总数是 worker_processes 和 worker_connections 的乘积
+    # 即 max_clients = worker_processes * worker_connections
+    # 在设置了反向代理的情况下，max_clients = worker_processes * worker_connections / 4  为什么
+    # 为什么上面反向代理要除以4，应该说是一个经验值
+    # 根据以上条件，正常情况下的Nginx Server可以应付的最大连接数为：4 * 8000 = 32000
+    # worker_connections 值的设置跟物理内存大小有关
+    # 因为并发受IO约束，max_clients的值须小于系统可以打开的最大文件数
+    # 而系统可以打开的最大文件数和内存大小成正比，一般1GB内存的机器上可以打开的文件数大约是10万左右
+    # 我们来看看360M内存的VPS可以打开的文件句柄数是多少：
+    # $ cat /proc/sys/fs/file-max
+    # 输出 34336
+    # 32000 < 34336，即并发连接总数小于系统可以打开的文件句柄总数，这样就在操作系统可以承受的范围之内
+    # 所以，worker_connections 的值需根据 worker_processes 进程数目和系统可以打开的最大文件总数进行适当地进行设置
+    # 使得并发总数小于操作系统可以打开的最大文件数目
+    # 其实质也就是根据主机的物理CPU和内存进行配置
+    # 当然，理论上的并发总数可能会和实际有所偏差，因为主机还有其他的工作进程需要消耗系统资源。
+    # ulimit -SHn 65535
+ 
+}
+ 
+ 
+http {
+    #设定mime类型,类型由mime.type文件定义
+    include    mime.types;
+    default_type  application/octet-stream;
+    #设定日志格式
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+ 
+    access_log  logs/access.log  main;
+ 
+    #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，
+    #对于普通应用，必须设为 on,
+    #如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，
+    #以平衡磁盘与网络I/O处理速度，降低系统的uptime.
+    sendfile     on;
+    #tcp_nopush     on;
+ 
+    #连接超时时间
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+    tcp_nodelay     on;
+ 
+    #开启gzip压缩
+    gzip  on;
+    gzip_disable "MSIE [1-6].";
+ 
+    #设定请求缓冲
+    client_header_buffer_size    128k;
+    large_client_header_buffers  4 128k;
+ 
+ 
+    #设定虚拟主机配置
+    server {
+        #侦听80端口
+        listen    80;
+        #定义使用 www.nginx.cn访问
+        server_name  www.nginx.cn;
+ 
+        #定义服务器的默认网站根目录位置
+        root html;
+ 
+        #设定本虚拟主机的访问日志
+        access_log  logs/nginx.access.log  main;
+ 
+        #默认请求
+        location / {
+            
+            #定义首页索引文件的名称
+            index index.php index.html index.htm;   
+ 
+        }
+ 
+        # 定义错误提示页面
+        error_page   500 502 503 504 /50x.html;
+        location = /50x.html {
+        }
+ 
+        #静态文件，nginx自己处理
+        location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+            
+            #过期30天，静态文件不怎么更新，过期可以设大一点，
+            #如果频繁更新，则可以设置得小一点。
+            expires 30d;
+        }
+ 
+        #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
+        location ~ .php$ {
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index index.php;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            include fastcgi_params;
+        }
+ 
+        #禁止访问 .htxxx 文件
+            location ~ /.ht {
+            deny all;
+        }
+ 
+    }
+}
+----------------------------------- nginx 配置 end -------------------------------------------------

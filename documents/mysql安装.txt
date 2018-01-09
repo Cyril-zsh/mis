@@ -1,0 +1,35 @@
+1、	下载免安装版本（GPL）
+2、	解压
+3、	配置环境变量
+4、	初始化
+		命令：
+			C:\> mysqld --initialize
+			C:\> mysqld --initialize-insecure
+5、	启动mysql
+		命令：
+			C:\> mysqld --console
+6、	停止mysql
+		命令：
+			C:\> mysqladmin -u root -p shutdown
+			Ps:需要输入密码
+7、	登录
+		命令：
+			C:\> mysql -u root -p
+			Ps:密码默认随机生成，位置在根目录下（/data/*.err）文件中：A temporary password is generated for root@localhost: wss_Ga/Jg7HX
+8、 修改密码：
+		命令：
+			mysql> alter user 'root'@'localhost' identified by '123456';
+9、	退出:
+		命令：
+			mysql> exit
+			Ps：或者(quit) 或者(\q)
+10、配置windows服务
+		命令：
+			C:\> mysqld --install
+11、启动windows服务
+		命令：
+			C:\> net start mysql 
+12、停止windows服务
+		命令：
+			C:\> net stop mysql 
+
