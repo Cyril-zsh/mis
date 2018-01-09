@@ -1,0 +1,31 @@
+1、查看是否有redis   yum 源
+	yum install redis
+
+2、下载fedora的epel仓库
+	yum install epel-release
+	
+3、安装redis数据库
+	yum install redis
+	
+4、开启redis服务
+	1) service redis start  Redirecting to /bin/systemctl start redis.service
+　　2) redis-server /etc/redis.conf
+	ps：如果要远程访问必须在redis.conf文件中修改密码和取消ip绑定
+
+5、查看redis是否开启
+	ps -ef | grep redis
+
+
+	
+6、进入redis服务
+	redis-cli
+	
+7、关闭服务
+	redis-cli  shutdown
+	
+8、开放端口6379、6380的防火墙
+	/sbin/iptables -I INPUT -p tcp --dport 6379  -j ACCEPT   开启6379
+	/sbin/iptables -I INPUT -p tcp --dport 6380 -j ACCEPT  开启6380
+	/etc/rc.d/init.d/iptables save                           保存
+	
+9、使用redis  desktop manager连接redis
