@@ -3,23 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.zsh.mis</groupId>
-  <artifactId>mis-core</artifactId>
+  <artifactId>mis</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
-  <name>mis-core</name>
-  <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <modules>
+    <module>mis-server</module>
+    <module>mis-config</module>
+    <module>mis-core</module>
+  </modules>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
 </project>
