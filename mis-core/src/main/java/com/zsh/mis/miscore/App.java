@@ -1,4 +1,4 @@
-package com.zsh.mis;
+package com.zsh.mis.miscore;
 
 /**
  * Hello world!
